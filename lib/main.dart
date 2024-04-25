@@ -15,7 +15,16 @@ class MyApp extends StatelessWidget {
       title: 'Extra Widgets',
       theme: ThemeData(
         primarySwatch: Colors.blue,
-        bottomNavigationBarTheme:  BottomNavigationBarThemeData(
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Color(0xff60656D),
+          foregroundColor: Colors.white,
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.w400,
+          ),
+        ),
+        bottomNavigationBarTheme:  const BottomNavigationBarThemeData(
           selectedItemColor: Color(0xff343941),
           unselectedItemColor: Color(0xff60656D),
           showSelectedLabels: true,

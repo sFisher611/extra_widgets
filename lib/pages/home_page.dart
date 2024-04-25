@@ -27,11 +27,11 @@ class _HomePageState extends State<HomePage> {
         },
         items: const [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: '1',
+            icon: Icon(Icons.animation),
+            label: 'First',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: Icon(Icons.pages),
             label: 'Search',
           ),
           BottomNavigationBarItem(

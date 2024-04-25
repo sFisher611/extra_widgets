@@ -38,6 +38,7 @@ dependencies:
   go_router: ^14.0.0
   avatar_glow: ^3.0.1
   animator: ^3.3.0
+  animations: ^2.0.11
 
 dev_dependencies:
   flutter_test:
