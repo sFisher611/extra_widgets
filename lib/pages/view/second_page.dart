@@ -51,7 +51,10 @@ class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Second Page"),backgroundColor: Colors.grey.withOpacity(0.8),),
+      appBar: AppBar(
+        title: const Text("Second Page"),
+        backgroundColor: Colors.grey.withOpacity(0.8),
+      ),
       body: Column(
         children: [
           const Row(),
@@ -98,6 +101,27 @@ class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
                 ),
               ),
             ),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              context.push("/animation_size");
+            },
+            child: const Text("Go Animation page"),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              context.push("/animation_size1");
+            },
+            child: const Text("Go Animation page center"),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              context.push("/animation_size2");
+            },
+            child: const Text("Go Animation page left"),
           )
         ],
       ),
@@ -136,3 +160,18 @@ class Destination extends StatelessWidget {
   }
 }
 
+class AnimationPage extends StatelessWidget {
+  const AnimationPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.green,
+      appBar: AppBar(
+        // brightness: Brightness.dark,
+        centerTitle: true,
+        title: const Text('Size Transition'),
+      ),
+    );
+  }
+}

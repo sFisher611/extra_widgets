@@ -167,3 +167,28 @@ GoRoute(
       },
     ),
 ```
+
+### Router animation sized
+```Dart
+GoRoute(
+    path: '/animation_size',
+    name: "animation_size",
+    pageBuilder: (context, state) {
+      return CustomTransitionPage(
+        key: state.pageKey,
+        child: AnimationPage(),
+        transitionsBuilder:
+            (context, animation, secondaryAnimation, child) {
+          return Align(
+            alignment: Alignment.bottomCenter,
+            child: SizeTransition(
+              sizeFactor: animation,
+              axisAlignment: 0,
+              child: child,
+            ),
+          );
+        },
+      );
+    },
+  ),
+```

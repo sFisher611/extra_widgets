@@ -38,6 +38,89 @@ class AppRouter {
           );
         },
       ),
+      GoRoute(
+        path: '/animation_size',
+        name: "animation_size",
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            transitionDuration: Duration(milliseconds: 1000),
+            reverseTransitionDuration: Duration(milliseconds: 200),
+            child: AnimationPage(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              animation = CurvedAnimation(
+                  curve: Curves.fastLinearToSlowEaseIn,
+                  parent: animation,
+                  reverseCurve: Curves.fastOutSlowIn);
+              return Align(
+                alignment: Alignment.bottomCenter,
+                child: SizeTransition(
+                  sizeFactor: animation,
+                  axisAlignment: 0,
+                  child: child,
+                ),
+              );
+            },
+          );
+        },
+      ),
+      GoRoute(
+        path: '/animation_size1',
+        name: "animation_size1",
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            transitionDuration: const Duration(milliseconds: 1000),
+            reverseTransitionDuration: const Duration(milliseconds: 200),
+            child: AnimationPage(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              animation = CurvedAnimation(
+                  curve: Curves.fastLinearToSlowEaseIn,
+                  parent: animation,
+                  reverseCurve: Curves.fastOutSlowIn);
+              return Align(
+                alignment: Alignment.center,
+                child: SizeTransition(
+                  axis: Axis.horizontal,
+                  sizeFactor: animation,
+                  axisAlignment: 0,
+                  child: child,
+                ),
+              );
+            },
+          );
+        },
+      ),
+      GoRoute(
+        path: '/animation_size2',
+        name: "animation_size2",
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            transitionDuration: const Duration(milliseconds: 1000),
+            reverseTransitionDuration: const Duration(milliseconds: 200),
+            child: AnimationPage(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              animation = CurvedAnimation(
+                  curve: Curves.fastLinearToSlowEaseIn,
+                  parent: animation,
+                  reverseCurve: Curves.fastOutSlowIn);
+              return Align(
+                alignment: Alignment.centerLeft,
+                child: SizeTransition(
+                  axis: Axis.horizontal,
+                  sizeFactor: animation,
+                  axisAlignment: 0,
+                  child: child,
+                ),
+              );
+            },
+          );
+        },
+      ),
       StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) => HomePage(
                 navigationShell: navigationShell,
