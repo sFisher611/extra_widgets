@@ -122,6 +122,13 @@ class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
               context.push("/animation_size2");
             },
             child: const Text("Go Animation page left"),
+          ),
+          const SizedBox(height: 20),
+          ElevatedButton(
+            onPressed: () {
+              context.push("/animation_size3");
+            },
+            child: const Text("Go Animation page to left"),
           )
         ],
       ),

@@ -192,3 +192,33 @@ GoRoute(
     },
   ),
 ```
+### 2
+```Dart
+GoRoute(
+      path: '/animation_size3',
+      name: "animation_size3",
+      pageBuilder: (context, state) {
+        return CustomTransitionPage(
+          key: state.pageKey,
+          transitionDuration: const Duration(milliseconds: 1000),
+          reverseTransitionDuration: const Duration(milliseconds: 200),
+          child: const AnimationPage(),
+          transitionsBuilder:
+              (context, animation, secondaryAnimation, child) {
+            animation = CurvedAnimation(
+                curve: Curves.fastLinearToSlowEaseIn,
+                parent: animation,
+                reverseCurve: Curves.fastOutSlowIn);
+            return SlideTransition(
+              // textDirection: TextDirection.rtl,  <- right to
+              position: Tween(
+                begin: const Offset(1.0, 0.0),
+                end: const Offset(0.0, 0.0),
+              ).animate(animation),
+              child: child,
+            );
+          },
+        );
+      },
+    )
+```
