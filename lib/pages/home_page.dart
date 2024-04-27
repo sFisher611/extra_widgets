@@ -28,15 +28,15 @@ class _HomePageState extends State<HomePage> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.animation),
-            label: 'First',
+            label: 'Object',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.pages),
-            label: 'Search',
+            label: 'Page',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'Favorites',
+            icon: Icon(Icons.vertical_align_bottom_outlined),
+            label: 'Button',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.settings),

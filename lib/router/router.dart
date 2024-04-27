@@ -148,6 +148,16 @@ class AppRouter {
           );
         },
       ),
+      GoRoute(
+        path: '/animation_background',
+        name: "animation_background',",
+        builder: (context, state) => AnimatingBg1(),
+      ),
+      GoRoute(
+        path: '/animation_background1',
+        name: "animation_background1',",
+        builder: (context, state) => const AnimationBackground(),
+      ),
       StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) => HomePage(
                 navigationShell: navigationShell,

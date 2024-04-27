@@ -39,6 +39,7 @@ dependencies:
   avatar_glow: ^3.0.1
   animator: ^3.3.0
   animations: ^2.0.11
+  particles_flutter: ^0.1.4
 
 dev_dependencies:
   flutter_test:

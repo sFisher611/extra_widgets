@@ -7,7 +7,7 @@ class FirstPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text("First Page")),
+        appBar: AppBar(title: const Text("Animation Object")),
         body: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [

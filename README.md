@@ -222,3 +222,45 @@ GoRoute(
       },
     )
 ```
+### Background 
+<img src="https://github.com/sFisher611/extra_widgets/assets/61547104/cff3980c-98ed-47da-a928-06b6f2aae7cc" width="200" height="400" />
+
+```Dart
+import 'package:particles_flutter/particles_flutter.dart';
+class AnimationBackground extends StatelessWidget {
+  const AnimationBackground({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    double h = MediaQuery.of(context).size.height;
+    double w = MediaQuery.of(context).size.width;
+    return Scaffold(
+      backgroundColor: Colors.blue,
+      body: CircularParticle(
+        width: w,
+        height: h,
+        awayRadius: w / 5,
+        numberOfParticles: 150,
+        speedOfParticles: 1.5,
+        maxParticleSize: 7,
+        particleColor: Colors.white.withOpacity(.7),
+        awayAnimationDuration: Duration(milliseconds: 600),
+        awayAnimationCurve: Curves.easeInOutBack,
+        onTapAnimation: false,
+        isRandSize: true,
+        isRandomColor: false,
+        connectDots: false,
+        // randColorList: [
+        // Colors.red.withAlpha(210),
+        // Colors.white.withAlpha(210),
+        // Colors.yellow.withAlpha(210),
+        // Colors.green.withAlpha(210),
+        // ],
+        enableHover: true,
+        hoverColor: Colors.black,
+        hoverRadius: 90,
+      ),
+    );
+  }
+}
+```

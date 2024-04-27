@@ -52,7 +52,7 @@ class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Second Page"),
+        title: const Text("Animation Page"),
         backgroundColor: Colors.grey.withOpacity(0.8),
       ),
       body: Column(
