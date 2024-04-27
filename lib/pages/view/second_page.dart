@@ -1,12 +1,57 @@
+// ignore_for_file: must_be_immutable
+
+import 'dart:async';
+
 import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
-class SecondPage extends StatelessWidget {
+class SecondPage extends StatefulWidget {
   const SecondPage({super.key});
+
+  @override
+  State<SecondPage> createState() => _SecondPageState();
+}
+
+class _SecondPageState extends State<SecondPage> with TickerProviderStateMixin {
+  late AnimationController scaleController;
+  late Animation<double> scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    scaleController = AnimationController(
+        vsync: this, duration: const Duration(milliseconds: 500))
+      ..addStatusListener(
+        (status) {
+          if (status == AnimationStatus.completed) {
+            context.push("/location1");
+            Timer(
+              const Duration(milliseconds: 300),
+              () {
+                // print('worked');
+                scaleController.reset();
+              },
+            );
+          }
+        },
+      );
+
+    scaleAnimation =
+        Tween<double>(begin: 0.0, end: 20.0).animate(scaleController);
+  }
+
+  @override
+  void dispose() {
+    scaleController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text("Second Page")),
+      appBar: AppBar(title: const Text("Second Page"),backgroundColor: Colors.grey.withOpacity(0.8),),
       body: Column(
         children: [
           const Row(),
@@ -29,6 +74,31 @@ class SecondPage extends StatelessWidget {
               );
             },
           ),
+          InkWell(
+            onTap: () {
+              scaleController.forward();
+            },
+            child: Container(
+              width: 80,
+              height: 80,
+              decoration: BoxDecoration(
+                  color: Colors.blue,
+                  // shape: BoxShape.circle,
+                  borderRadius: BorderRadius.circular(10)),
+              child: AnimatedBuilder(
+                animation: scaleAnimation,
+                builder: (c, child) => Transform.scale(
+                  scale: scaleAnimation.value,
+                  child: Container(
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.blue,
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          )
         ],
       ),
     );
@@ -52,3 +122,17 @@ class AnimatorPage extends StatelessWidget {
     );
   }
 }
+
+class Destination extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.blue,
+        centerTitle: true,
+        title: const Text('Go Back'),
+      ),
+    );
+  }
+}
+

@@ -19,6 +19,25 @@ class AppRouter {
     debugLogDiagnostics: true,
     navigatorKey: _rootNavigatorMain,
     routes: [
+      GoRoute(
+        path: '/location1',
+        name: "location1",
+        // builder: (context, state) => Destination(),
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: Destination(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              return FadeTransition(
+                opacity:
+                    CurveTween(curve: Curves.easeInBack).animate(animation),
+                child: child,
+              );
+            },
+          );
+        },
+      ),
       StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) => HomePage(
                 navigationShell: navigationShell,
