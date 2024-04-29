@@ -102,6 +102,7 @@ GoRouter(
 ```
 
 #### button =>
+<img src="https://github.com/sFisher611/extra_widgets/assets/61547104/91ddabb8-b062-47cc-b5ef-dcc85bc02fd0" width="200" height="400" />
 ```Dart
 OpenContainer(
     closedBuilder: (_, openContainer) {
@@ -263,4 +264,188 @@ class AnimationBackground extends StatelessWidget {
     );
   }
 }
+```
+
+### AppSplash
+<img src="https://github.com/sFisher611/extra_widgets/assets/61547104/c902f5c7-ef11-4a91-8614-f8295db9a1ba" width="200" height="400" />
+
+```Dart 
+class SecondClass extends StatefulWidget {
+  @override
+  _SecondClassState createState() => _SecondClassState();
+}
+
+class _SecondClassState extends State<SecondClass>
+    with TickerProviderStateMixin {
+  late AnimationController scaleController;
+  late Animation<double> scaleAnimation;
+
+  double _opacity = 0;
+  bool _value = true;
+
+  @override
+  void initState() {
+    super.initState();
+
+    scaleController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 600),
+    )..addStatusListener(
+        (status) {
+          if (status == AnimationStatus.completed) {
+            context.push('/animation_splash');
+
+            Timer(
+              const Duration(milliseconds: 300),
+              () {
+                scaleController.reset();
+              },
+            );
+          }
+        },
+      );
+
+    scaleAnimation =
+        Tween<double>(begin: 0.0, end: 12).animate(scaleController);
+
+    Timer(Duration(milliseconds: 600), () {
+      setState(() {
+        _opacity = 1.0;
+        _value = false;
+      });
+    });
+    Timer(Duration(milliseconds: 2000), () {
+      setState(() {
+        scaleController.forward();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    scaleController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Stack(
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Padding(
+                padding: EdgeInsets.only(top: 80),
+                child: Text(
+                  'Here will be your app\'s logo',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 18,
+                  ),
+                ),
+              ),
+            ],
+          ),
+          Center(
+            child: AnimatedOpacity(
+              curve: Curves.fastLinearToSlowEaseIn,
+              duration: Duration(seconds: 6),
+              opacity: _opacity,
+              child: AnimatedContainer(
+                curve: Curves.fastLinearToSlowEaseIn,
+                duration: Duration(seconds: 2),
+                height: _value ? 50 : 200,
+                width: _value ? 50 : 200,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.deepPurpleAccent.withOpacity(.2),
+                      blurRadius: 100,
+                      spreadRadius: 10,
+                    ),
+                  ],
+                  color: Colors.deepPurpleAccent,
+                  borderRadius: BorderRadius.circular(20),
+                ),
+                child: Center(
+                  child: Container(
+                    width: 100,
+                    height: 100,
+                    decoration: BoxDecoration(
+                        color: Colors.deepPurpleAccent, shape: BoxShape.circle),
+                    child: Stack(
+                      children: [
+                        AnimatedBuilder(
+                          animation: scaleAnimation,
+                          builder: (c, child) => Transform.scale(
+                            scale: scaleAnimation.value,
+                            child: Container(
+                              decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Colors.deepPurpleAccent,
+                              ),
+                            ),
+                          ),
+                        ),
+                        Center(
+                          child: FlutterLogo(
+                            size: 110,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class NextPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Go Back'),
+        centerTitle: true,
+        backgroundColor: Colors.deepPurpleAccent,
+      ),
+    );
+  }
+}
+
+```
+
+### button
+```Dart
+OpenContainer(
+    closedBuilder: (_, openContainer) {
+      return const SizedBox(
+        height: 80,
+        width: 80,
+        child: Center(
+          child: Text(
+            'App Logo',
+            style: TextStyle(
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+        ),
+      );
+    },
+    openColor: Colors.white,
+    closedElevation: 20,
+    closedShape:
+        RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+    transitionDuration: const Duration(milliseconds: 700),
+    openBuilder: (_, closeContainer) {
+      return SecondClass();
+    },
+  )
 ```

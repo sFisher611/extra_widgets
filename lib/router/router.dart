@@ -5,6 +5,7 @@ import 'package:extra_widgets/pages/view/third_page.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
+import '../pages/animation_splash.dart';
 import '../pages/view/second_page.dart';
 
 class AppRouter {
@@ -157,6 +158,27 @@ class AppRouter {
         path: '/animation_background1',
         name: "animation_background1',",
         builder: (context, state) => const AnimationBackground(),
+      ),
+      GoRoute(
+        path: '/animation_splash',
+        name: "animation_splash",
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            child: NextPage(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              // animation = CurvedAnimation(
+              //     curve: Curves.fastLinearToSlowEaseIn,
+              //     parent: animation,
+              //     reverseCurve: Curves.fastOutSlowIn);
+              return FadeTransition(
+                opacity: Tween<double>(begin: 0.0, end: 12).animate(animation),
+                child: child,
+              );
+            },
+          );
+        },
       ),
       StatefulShellRoute.indexedStack(
           builder: (context, state, navigationShell) => HomePage(
