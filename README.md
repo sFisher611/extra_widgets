@@ -452,6 +452,7 @@ OpenContainer(
 
 ## App Splash 2
 <img src="https://github.com/sFisher611/extra_widgets/assets/61547104/74eff0e1-eebc-4096-9c7c-9878d1914e0e" width="200" height="400" />
+
 ```
 page_transition:
 ```
