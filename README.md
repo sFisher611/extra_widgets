@@ -449,3 +449,141 @@ OpenContainer(
     },
   )
 ```
+
+## App Splash 2
+<img src="https://github.com/sFisher611/extra_widgets/assets/61547104/74eff0e1-eebc-4096-9c7c-9878d1914e0e" width="200" height="400" />
+```
+page_transition:
+```
+
+```
+animated_text_kit:
+```
+### Widget
+```Dart
+OpenContainer(
+    closedBuilder: (_, openContainer) {
+      return Container(
+        height: 80,
+        width: 80,
+        child: const Center(
+          child: Text(
+            'App Logo',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+        ),
+      );
+    },
+    openColor: Color(0xff412EEF),
+    closedElevation: 20,
+    closedShape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(20),
+    ),
+    transitionDuration: Duration(milliseconds: 700),
+    openBuilder: (_, closeContainer) {
+      return SecondClass1();
+    },
+  )
+```
+### Splash
+```Dart
+class SecondClass1 extends StatefulWidget {
+  @override
+  _SecondClass1State createState() => _SecondClass1State();
+}
+
+class _SecondClass1State extends State<SecondClass1>
+    with TickerProviderStateMixin {
+  late AnimationController scaleController;
+  late Animation<double> scaleAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    scaleController = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 600),
+    )..addStatusListener(
+        (status) {
+          if (status == AnimationStatus.completed) {
+            context.push('/animation_splash1');
+            Timer(
+              Duration(milliseconds: 300),
+              () {
+                scaleController.reset();
+              },
+            );
+          }
+        },
+      );
+
+    scaleAnimation =
+        Tween<double>(begin: 0.0, end: 12).animate(scaleController);
+
+    Timer(const Duration(seconds: 2), () {
+      setState(() {
+        scaleController.forward();
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    
+    scaleController.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Color(0xff412EEF),
+      body: Center(
+        child: DefaultTextStyle(
+          style: TextStyle(fontSize: 30.0),
+          child: AnimatedTextKit(
+            animatedTexts: [
+              TyperAnimatedText(
+                'YOUR APP\'S NAME',
+                speed: Duration(milliseconds: 150),
+              ),
+            ],
+            isRepeatingAnimation: false,
+            repeatForever: false,
+            displayFullTextOnTap: false,
+          ),
+        ),
+      ),
+    );
+  }
+}
+```
+### Next Page
+
+```Dart
+
+class ThirdPage1 extends StatelessWidget {
+@override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Go Back'),
+        centerTitle: true,
+        
+        backgroundColor: Color(0xff412EEF),
+      ),
+      body: Center(
+        child: Text(
+          "APP HOME PAGE",
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 20,
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+```

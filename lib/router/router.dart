@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
 import '../pages/animation_splash.dart';
+import '../pages/view/animation_splash2.dart';
 import '../pages/view/second_page.dart';
 
 class AppRouter {
@@ -175,6 +176,33 @@ class AppRouter {
               return FadeTransition(
                 opacity: Tween<double>(begin: 0.0, end: 12).animate(animation),
                 child: child,
+              );
+            },
+          );
+        },
+      ),
+      GoRoute(
+        path: '/animation_splash1',
+        name: "animation_splash1",
+        pageBuilder: (context, state) {
+          return CustomTransitionPage(
+            key: state.pageKey,
+            transitionDuration: const Duration(milliseconds: 1000),
+            reverseTransitionDuration: const Duration(milliseconds: 200),
+            child: ThirdPage1(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) {
+              animation = CurvedAnimation(
+                  curve: Curves.fastLinearToSlowEaseIn,
+                  parent: animation,
+                  reverseCurve: Curves.fastOutSlowIn);
+              return Align(
+                alignment: Alignment.bottomCenter,
+                child: SizeTransition(
+                  sizeFactor: animation,
+                  axisAlignment: 0,
+                  child: child,
+                ),
               );
             },
           );
